@@ -1,23 +1,22 @@
-import logo from './logo.svg';
-import './App.css';
+import { Route, Routes } from "react-router-dom";
+import Nav from './Components/nav.js';
+// import NavLogged from './Components/navLogged';
+import Home from './Components/home.js';
+import RosterPage from './Components/roster';
+// import RosterPageAdmin from './Components/rosterAdmin';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+    <div>
+      <header>
+        <Nav />
       </header>
+      <main className='h-screen'>
+        <Routes>
+          <Route path='/' element={<Home />} />
+          <Route path='/roster' element={<RosterPage />} />
+        </Routes>
+      </main>
     </div>
   );
 }
