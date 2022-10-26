@@ -1,35 +1,14 @@
-import React, { useState } from 'react';
 import FormAddRoster from './formAddRoster';
 import TankContainer from './TankContainer';
 import HealContainer from './HealContainer';
 import DpsContainer from './DpsContainer';
 
-function RosterPageAdmin() {
-  const [players, setPlayers] = useState([
-    {
-      id: 1,
-      name: "Steakozor",
-      src: "https://render.worldofwarcraft.com/eu/character/elune/19/193631763-avatar.jpg",
-      role: "dps",
-    },
-    {
-      id: 2,
-      name: "Mury",
-      src: "https://render.worldofwarcraft.com/eu/character/elune/150/155300246-avatar.jpg",
-      role: "heal",
-    },
-    {
-      id: 3,
-      name: "Mnk",
-      src: "https://render.worldofwarcraft.com/eu/character/elune/70/199881286-avatar.jpg",
-      role: "tank",
-    }
-  ])
+function RosterPageAdmin({ players, setPlayers }) {
 
   const addPlayer = (player) => {
     let renderURL = `/profile/wow/character/${player.server.toLowerCase()}/${player.name.toLowerCase()}/character-media`;
     let namespace = "?namespace=profile-eu&locale=fr_FR";
-    let token = "&access_token=EUx03WVdY3aDlN2MzIb8BrIxFWdfT0LEnS";
+    let token = "&access_token=EUTNebPGjHgdieK2pCg3Y8ZLtIGVO4wJ3I";
     const url = `https://eu.api.blizzard.com${renderURL}${namespace}${token}`;
 
     fetch(url).then((response) =>
@@ -38,11 +17,11 @@ function RosterPageAdmin() {
         const name = data.character.name;
         const portait = data.assets[0].value;
         const imgPerso = data.assets[3].value;
+        const server = data.character.realm.name;
         
         const id = Math.floor(Math.random() * 10000) + 1;
-        const newPlayer = { id: id, name: name, src: portait, role: role };
+        const newPlayer = { id: id, name: name, src: portait, role: role, imgPerso: imgPerso, server: server};
         setPlayers([...players, newPlayer])
-        console.log(imgPerso);
       })
     )
   }
