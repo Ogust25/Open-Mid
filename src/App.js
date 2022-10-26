@@ -2,8 +2,9 @@ import { Route, Routes } from "react-router-dom";
 import Nav from './Components/nav.js';
 // import NavLogged from './Components/navLogged';
 import Home from './Components/home.js';
-import RosterPage from './Components/roster';
-// import RosterPageAdmin from './Components/rosterAdmin';
+// import RosterPage from './Components/rosterPage/roster';
+import RosterPageAdmin from './Components/rosterPage/rosterAdmin';
+import ProfilePage from "./Components/rosterPage/profilePage.js";
 
 function App() {
   return (
@@ -14,7 +15,8 @@ function App() {
       <main className='h-screen'>
         <Routes>
           <Route path='/' element={<Home />} />
-          <Route path='/roster' element={<RosterPage />} />
+          <Route path='/roster' element={<RosterPageAdmin />} />
+          <Route path='/roster/profile' element={<ProfilePage />} />
         </Routes>
       </main>
     </div>
